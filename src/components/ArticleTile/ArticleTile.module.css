@@ -1,0 +1,40 @@
+.tile {
+  display: block;
+  transition: transform 0.18s;
+}
+
+a.tile:hover {
+  transform: translateY(-4px);
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #111;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.category {
+  margin-top: 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-plum);
+  letter-spacing: 0.4px;
+}
+
+.title {
+  margin-top: 7px;
+  font-size: 17px;
+  line-height: 1.42;
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.meta {
+  margin-top: 9px;
+  font-size: 13px;
+  color: var(--color-mute);
+  font-weight: 500;
+}

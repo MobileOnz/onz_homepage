@@ -1,0 +1,15 @@
+/* ── onz 디자인 토큰 ──
+   화이트 #FFFFFF / 니어블랙 #1B1B1B / 본문 #3f3f3f / 웜뮤트 #7D7A6F
+   웜크림 #FFFCF3·#F3EFE6·#E4DFD8 / 플럼 액센트 #21103C */
+:root {
+  --color-white: #ffffff;
+  --color-ink: #1b1b1b;
+  --color-body: #3f3f3f;
+  --color-mute: #7d7a6f;
+  --color-cream: #fffcf3;
+  --color-cream-2: #f3efe6;
+  --color-line: #e4dfd8;
+  --color-plum: #21103c;
+
+  --font-sans: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}

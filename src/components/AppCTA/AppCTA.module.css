@@ -1,0 +1,81 @@
+.quiet {
+  border-top: 1px solid var(--color-line);
+}
+
+.quiet .inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 44px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.quiet .title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--color-ink);
+}
+
+.quiet .description {
+  margin-top: 7px;
+  font-size: 15px;
+  color: var(--color-body);
+  font-weight: 500;
+}
+
+.prominent {
+  max-width: 720px;
+  margin: 36px auto 0;
+  padding: 0 24px;
+}
+
+.prominent .inner {
+  background: var(--color-plum);
+  border-radius: 18px;
+  padding: 30px 28px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.prominent .title {
+  font-size: 19px;
+  font-weight: 800;
+}
+
+.prominent .description {
+  margin-top: 6px;
+  font-size: 14.5px;
+  color: #d9cfe8;
+  font-weight: 500;
+}
+
+.stores {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  /* App Store 배지(SVG, 원본 129.7:40 비율)의 height:44px 렌더 크기에 맞춘 고정 박스.
+     Google Play 배지도 같은 폭·높이를 쓰도록 통일합니다. */
+  width: 143px;
+  height: 44px;
+}
+
+.stores a {
+  display: inline-flex;
+  transition: opacity 0.15s;
+}
+
+.stores a:hover {
+  opacity: 0.85;
+}

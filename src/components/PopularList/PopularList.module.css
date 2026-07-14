@@ -1,0 +1,70 @@
+.popular {
+  padding: 60px 0;
+  margin-top: 40px;
+  background: var(--color-cream);
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.head {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--color-ink);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-mute);
+  font-weight: 500;
+  margin-bottom: 26px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 48px;
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item {
+  display: flex;
+  gap: 18px;
+  align-items: baseline;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.num {
+  font-size: 20px;
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1.2px var(--color-mute);
+  min-width: 24px;
+}
+
+.item h4 {
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.42;
+}
+
+.category {
+  margin-top: 4px;
+  font-size: 12.5px;
+  color: var(--color-plum);
+  font-weight: 600;
+}
