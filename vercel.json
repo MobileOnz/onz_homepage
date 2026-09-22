@@ -1,3 +1,7 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/recommend", "destination": "/recommend/index.html" },
+    { "source": "/recommend/", "destination": "/recommend/index.html" },
+    { "source": "/article/:slug", "destination": "/index.html" }
+  ]
 }

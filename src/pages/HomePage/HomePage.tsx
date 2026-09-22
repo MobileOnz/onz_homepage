@@ -50,6 +50,16 @@ export function HomePage() {
         </div>
       </header>
 
+      <section className={styles.recommendation} aria-labelledby="recommendation-title">
+        <div>
+          <h2 id="recommendation-title">오늘은 어떤 한 잔이 어울릴까요?</h2>
+          <p>다섯 가지 질문으로 내 취향에 맞는 칵테일을 찾아보세요.</p>
+        </div>
+        <a className={styles.recommendButton} href="/recommend/">
+          맞춤추천하기 <span aria-hidden="true">→</span>
+        </a>
+      </section>
+
       {homeSections.map((section) => (
         <ContentRow key={section.id} {...section} />
       ))}

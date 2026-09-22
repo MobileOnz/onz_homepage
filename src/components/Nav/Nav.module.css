@@ -50,6 +50,7 @@
 }
 
 .appLink {
+  white-space: nowrap;
   font-size: 14px;
   color: var(--color-mute);
   font-weight: 600;
