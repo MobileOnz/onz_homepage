@@ -1,4 +1,4 @@
-import { questions, toRequest } from './questions.js';
+import { questions, toRequest } from '../recommendation/questions.ts';
 const app = document.querySelector('#app');
 let step = 0;
 let answers = {};
@@ -18,6 +18,7 @@ function updateProgress() {
   document.querySelector('#step-label').textContent = `취향 찾기 · ${questions[step].label}`;
   document.querySelector('#step-count').textContent = `${step + 1} / ${questions.length}`;
   document.querySelector('#progress').setAttribute('aria-valuenow', step + 1);
+  document.querySelector('#progress').setAttribute('aria-valuemax', questions.length);
   document.querySelector('#progress').setAttribute('aria-valuetext', `${questions.length}개 질문 중 ${step + 1}번째, ${questions[step].label}`);
   document.querySelector('#progress-fill').style.transform = `scaleX(${(step + 1) / questions.length})`;
 }
@@ -59,7 +60,7 @@ const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&a
 function focusTitle() { app.querySelector('h1')?.focus({ preventScroll: true }); }
 function render(moveFocus = false) {
   const q = questions[step];
-  app.innerHTML = `<form class="question-form"><div class="question-body"><div class="question-intro"><p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">${q.title}</h1><p class="hint">가장 끌리는 한 가지를 선택해주세요.</p></div><fieldset><legend class="sr-only">${q.title}</legend><div class="options">${q.options.map(([code, label, icon, desc]) => `<label class="option ${answers[q.key] === code ? 'selected' : ''}"><input type="radio" name="answer" value="${code}" ${answers[q.key] === code ? 'checked' : ''}><span class="option-icon"><img src="/recommend-assets/${icon}" width="28" height="28" alt=""></span><span>${label}${desc ? `<small>${desc}</small>` : ''}</span><span class="check" aria-hidden="true"></span></label>`).join('')}</div></fieldset></div><div class="actions"><button class="primary" type="submit" ${answers[q.key] ? '' : 'disabled'}><span>${step === questions.length - 1 ? '나의 칵테일 찾기' : '다음'}</span><span class="button-arrow" aria-hidden="true">→</span></button></div></form>`;
+  app.innerHTML = `<form class="question-form"><div class="question-body"><div class="question-intro"><p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">${q.title}</h1><p class="hint">가장 끌리는 한 가지를 선택해주세요.</p></div><fieldset><legend class="sr-only">${q.title}</legend><div class="options">${q.options.map(([code, label, icon, desc]) => `<label class="option ${answers[q.key] === code ? 'selected' : ''}"><input type="radio" name="answer" value="${code}" ${answers[q.key] === code ? 'checked' : ''}><span class="option-icon" aria-hidden="true">${icon}</span><span>${label}${desc ? `<small>${desc}</small>` : ''}</span><span class="check" aria-hidden="true"></span></label>`).join('')}</div></fieldset></div><div class="actions"><button class="primary" type="submit" ${answers[q.key] ? '' : 'disabled'}><span>${step === questions.length - 1 ? '나의 칵테일 찾기' : '다음'}</span><span class="button-arrow" aria-hidden="true">→</span></button></div></form>`;
   app.querySelector('form').onchange = event => {
     if (transitioning || busy || !q.options.some(([code]) => code === event.target.value)) return;
     answers[q.key] = event.target.value;
@@ -89,6 +90,15 @@ function layoutResult() {
   app.append(content);
   if (actions) app.append(actions);
 }
+function resultCard(result) {
+  const d = result.cocktail;
+  let photo = '';
+  try {
+    const url = new URL(d.imageUrl);
+    if (url.protocol === 'https:') photo = `<img class="result-image" width="800" height="600" src="${escape(url.href)}" alt="${escape(d.korName)} 칵테일" ${result.rank === 1 ? 'fetchpriority="high"' : 'loading="lazy"'} referrerpolicy="no-referrer">`;
+  } catch { /* An unavailable image gets an honest text state below. */ }
+  return `<article class="recommendation-card"><div class="result-photo">${photo}<p class="image-unavailable" ${photo ? 'hidden' : ''}>${escape(d.korName)} 사진을 불러올 수 없어요.</p></div><div class="recommendation-info"><p class="eyebrow">${result.rank === 1 ? '가장 가까운 취향' : '함께 살펴볼 한 잔'} · ${result.rank}</p><h2>${escape(d.korName)}</h2><p class="english">${escape(d.engName)}</p><p class="detail">${escape(d.base)} · 도수 ${escape(d.features.v2_abv)}%</p><ul class="reasons">${result.reasons.map(reason => `<li>${escape(reason)}</li>`).join('')}</ul><details><summary>재료와 이야기</summary><h3>재료</h3><p class="description">${escape(d.ingredients)}</p><h3>이야기</h3><p class="description">${escape(d.originText)}</p></details></div></article>`;
+}
 async function submit() {
   if (busy) return;
   busy = true;
@@ -97,30 +107,19 @@ async function submit() {
   app.innerHTML = '<div class="message" role="status"><div class="spinner"></div><h1 tabindex="-1">취향에 맞는 한 잔을 찾고 있어요…</h1><p>잠시만 기다려주세요.</p></div>';
   focusTitle();
   try {
-    const response = await fetch(`/api/recommendation?${toRequest(answers)}`, { signal: AbortSignal.timeout(15000) });
+    const response = await fetch(`/api/recommendations?${toRequest(answers)}`, { signal: AbortSignal.timeout(15000) });
     const body = await response.json();
     if (!response.ok) throw new Error(body.error || '추천을 불러오지 못했어요.');
-    const d = body.data;
+    if (!Array.isArray(body.data) || !body.data.length) throw new Error('추천 결과가 없습니다. 답변을 바꿔 다시 시도해주세요.');
     const chips = questions.map(q => `<span>${escape(q.options.find(([code]) => code === answers[q.key])[1])}</span>`).join('');
-    let image = '';
-    if (d) {
-      try { const url = new URL(d.imageUrlDetail || d.imageUrl); if (['https:', 'http:'].includes(url.protocol)) image = `<img class="result-image" width="800" height="600" src="${escape(url.href)}" alt="${escape(d.korName)}" referrerpolicy="no-referrer">`; } catch {}
-    }
-    app.innerHTML = `<p class="eyebrow">${body.mode === 'demo' ? 'DEMO PREVIEW · 고정 예시' : 'YOUR COCKTAIL'}</p>${image}<h1 tabindex="-1">${d ? escape(d.korName) : '딱 맞는 칵테일을 찾지 못했어요'}</h1>${d ? `<p class="english">${escape(d.engName)}</p><p class="description">${escape(d.originText)}</p>${d.base ? `<p class="detail">베이스 · ${escape(d.base)}</p>` : ''}${Number.isFinite(d.minAlcohol) && Number.isFinite(d.maxAlcohol) ? `<p class="detail">도수 · ${escape(d.minAlcohol)}–${escape(d.maxAlcohol)}%</p>` : ''}${Array.isArray(d.ingredients) ? `<h2>재료</h2><p class="description">${d.ingredients.map(escape).join(' · ')}</p>` : ''}` : '<p class="description">취향을 조금 바꿔 다시 찾아보세요.</p>'}<h2>내가 고른 취향</h2><div class="chips">${chips}</div><div class="actions"><button id="edit" class="back">취향 수정</button><button id="restart" class="primary">처음부터 다시</button></div>`;
-    const resultImage = app.querySelector('.result-image');
-    if (resultImage) {
-      const hero = document.createElement('div');
-      hero.className = 'result-hero';
-      const names = document.createElement('div');
-      names.className = 'result-names';
-      names.append(app.querySelector('h1'), app.querySelector('.english'));
-      resultImage.before(hero);
-      hero.append(resultImage, names);
-      resultImage.addEventListener('error', () => {
-        hero.classList.add('without-image');
-        resultImage.remove();
+    app.innerHTML = `<p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">취향에 가까운 칵테일 ${body.data.length}잔</h1><p class="hint">답변을 바탕으로, 서로 다른 매력의 칵테일을 골랐어요.</p><div class="recommendation-list">${body.data.map(resultCard).join('')}</div><h2>내가 고른 취향</h2><div class="chips">${chips}</div><div class="actions"><button id="edit" class="back">취향 수정</button><button id="restart" class="primary">처음부터 다시</button></div>`;
+    app.querySelectorAll('.result-image').forEach(img => {
+      img.addEventListener('error', () => {
+        // Never replace a missing cocktail photo with a different cocktail.
+        img.hidden = true;
+        img.nextElementSibling.hidden = false;
       });
-    }
+    });
     layoutResult(); resultActions(); focusTitle();
   } catch (error) {
     app.innerHTML = `<div role="alert"><p class="eyebrow">잠시만요</p><h1 tabindex="-1">추천을 가져오지 못했어요</h1><p class="description">${escape(error.name === 'TimeoutError' ? '응답 시간이 초과됐어요. 다시 시도해주세요.' : error.message)}</p><div class="actions"><button class="back">답변 수정</button><button class="primary">다시 시도</button></div></div>`;
@@ -145,12 +144,3 @@ if (embedded) {
   });
   window.addEventListener('onz:native-back', goBack);
 }
-fetch('/api/config').then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(config => {
-  const mode = document.querySelector('#mode');
-  mode.hidden = config.mode !== 'demo';
-  mode.textContent = config.mode === 'demo' ? '데모 모드 · 결과는 고정 예시입니다' : '';
-}).catch(() => {
-  const mode = document.querySelector('#mode');
-  mode.hidden = false;
-  mode.textContent = '연결 상태를 확인할 수 없습니다';
-});

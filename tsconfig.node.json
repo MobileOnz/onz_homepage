@@ -13,6 +13,8 @@
     "moduleDetection": "force",
     "noEmit": true,
     "allowJs": true,
+    "resolveJsonModule": true,
+    "strict": true,
 
     /* Linting */
     "noUnusedLocals": true,
@@ -20,5 +22,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts", "recommendation/**/*.ts", "server/recommendations.ts", "api/recommendations.ts", "scripts/*.ts"]
 }

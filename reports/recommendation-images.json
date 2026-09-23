@@ -1,0 +1,313 @@
+{
+  "checkedAt": "2026-09-23T11:57:57.619Z",
+  "checked": [
+    {
+      "name": "Rum Mango Fizz",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Rum_Mango_Fizz.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Plum Soju Cocktail",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Plum_Soju_Cocktail.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Sangria Blanca",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Sangria_Blanca.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Pineapple Mojito",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Pineapple_Mojito.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Rio Carnival",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Rio_Carnival.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "South Beach",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_South_Beach.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Saint Martin Bucket",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Saint_Martin_Bucket.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Turks Punch",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Turks_Punch.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Rum Bucket",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Rum_Bucket.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Varadero Beach",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Varadero_Beach.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Margarita",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Margarita.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Caipirinha",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Caipirinha.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Lavender Lemonade Cocktail",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Lavender_Lemonade_Cocktail.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Citrus Basil Smash",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Citrus_Basil_Smash.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Hemingway Special",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Hemingway_Special.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Mint Daiquiri",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Mint_Daiquiri.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Mint Lemonade",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Mint_Lemonade.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "California Lemonade",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_California_Lemonade.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Basil Limoncello",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Basil_Limoncello.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Lemon Drop Martini",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Lemon_Drop_Martini.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Black Manhattan",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Black_Manhattan.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Hanky Panky",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Hanky_Panky.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Boulevardier",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Boulevardier.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Bobby Burns",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Bobby_Burns.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Vieux Carré",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Vieux_Carré.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Rabo de Galo",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Rabo_de_Galo.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Mezcal Negroni",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Mezcal_Negroni.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Rob Roy",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Rob_Roy.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Dark Garment",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Dark_Garment.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Tipperary",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Tipperary.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "White Sangria",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_White_Sangria.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Rose Champagne Punch",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Rose_Champagne_Punch.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Pimm's Cup",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Pimms_Cup.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Ramos Fizz",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Ramos_Fizz.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Mimosa",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Mimosa.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Elderflower Spritz",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Elderflower_Spritz.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Sparkling Rose",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Sparkling_Rose.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Strawberry Lemonade",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Strawberry_Lemonade.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Green Tea Mojito",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Green_Tea_Mojito.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "South Side",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_South_Side.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Tommy’s Margarita",
+      "url": "https://onz-cocktail.kr/uploads/cocktails/onz_cocktail_Tommys_Margarita.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Florida Daiquiri",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Florida_Daiquiri.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "Mugwort Martini",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_Mugwort_Martini.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    },
+    {
+      "name": "White Negroni",
+      "url": "https://raw.githubusercontent.com/rlaaudgjs2/onz-cocktail-images/main/cocktail_image_file/old/onz_cocktail_White_Negroni.webp",
+      "status": 200,
+      "type": "image/webp",
+      "ok": true
+    }
+  ]
+}
