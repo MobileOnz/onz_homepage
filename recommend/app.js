@@ -1,4 +1,5 @@
 import { questions, toRequest } from '../recommendation/questions.ts';
+import { readRecommendationResponse } from './response.js';
 const app = document.querySelector('#app');
 let step = 0;
 let answers = {};
@@ -108,8 +109,7 @@ async function submit() {
   focusTitle();
   try {
     const response = await fetch(`/api/recommendations?${toRequest(answers)}`, { signal: AbortSignal.timeout(15000) });
-    const body = await response.json();
-    if (!response.ok) throw new Error(body.error || '추천을 불러오지 못했어요.');
+    const body = await readRecommendationResponse(response);
     if (!Array.isArray(body.data) || !body.data.length) throw new Error('추천 결과가 없습니다. 답변을 바꿔 다시 시도해주세요.');
     const chips = questions.map(q => `<span>${escape(q.options.find(([code]) => code === answers[q.key])[1])}</span>`).join('');
     app.innerHTML = `<p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">취향에 가까운 칵테일 ${body.data.length}잔</h1><p class="hint">답변을 바탕으로, 서로 다른 매력의 칵테일을 골랐어요.</p><div class="recommendation-list">${body.data.map(resultCard).join('')}</div><h2>내가 고른 취향</h2><div class="chips">${chips}</div><div class="actions"><button id="edit" class="back">취향 수정</button><button id="restart" class="primary">처음부터 다시</button></div>`;
