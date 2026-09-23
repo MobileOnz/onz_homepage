@@ -31,5 +31,5 @@ export interface CocktailRecommendation {
 }
 export interface Question {
   key: QuestionKey; label: string; title: string;
-  options: readonly (readonly [code: string, label: string, emoji: string, description?: string])[];
+  options: readonly (readonly [code: string, label: string, description?: string])[];
 }

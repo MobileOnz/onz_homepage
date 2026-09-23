@@ -1,6 +1,16 @@
 import { questions, toRequest } from '../recommendation/questions.ts';
 import { readRecommendationResponse } from './response.js';
 const app = document.querySelector('#app');
+const themeToggle = document.querySelector('#theme-toggle');
+themeToggle.onclick = () => {
+  const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  document.documentElement.dataset.theme = next;
+  themeToggle.textContent = next === 'dark' ? '라이트' : '다크';
+  themeToggle.setAttribute('aria-label', `${next === 'dark' ? '라이트' : '다크'} 모드로 전환`);
+  themeToggle.title = `${next === 'dark' ? '라이트' : '다크'} 모드로 전환`;
+  document.querySelector('meta[name="theme-color"]').content = next === 'dark' ? '#0d0812' : '#ffffff';
+  try { localStorage.setItem('onz-theme', next); } catch { /* Theme still applies for this page. */ }
+};
 let step = 0;
 let answers = {};
 let busy = false;
@@ -61,7 +71,7 @@ const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&a
 function focusTitle() { app.querySelector('h1')?.focus({ preventScroll: true }); }
 function render(moveFocus = false) {
   const q = questions[step];
-  app.innerHTML = `<form class="question-form"><div class="question-body"><div class="question-intro"><p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">${q.title}</h1><p class="hint">가장 끌리는 한 가지를 선택해주세요.</p></div><fieldset><legend class="sr-only">${q.title}</legend><div class="options">${q.options.map(([code, label, icon, desc]) => `<label class="option ${answers[q.key] === code ? 'selected' : ''}"><input type="radio" name="answer" value="${code}" ${answers[q.key] === code ? 'checked' : ''}><span class="option-icon" aria-hidden="true">${icon}</span><span>${label}${desc ? `<small>${desc}</small>` : ''}</span><span class="check" aria-hidden="true"></span></label>`).join('')}</div></fieldset></div><div class="actions"><button class="primary" type="submit" ${answers[q.key] ? '' : 'disabled'}><span>${step === questions.length - 1 ? '나의 칵테일 찾기' : '다음'}</span><span class="button-arrow" aria-hidden="true">→</span></button></div></form>`;
+  app.innerHTML = `<form class="question-form"><div class="question-body"><div class="question-intro"><div class="glass-mark" aria-hidden="true"><svg viewBox="0 0 36 48"><path class="glass-bowl" d="M5 7h26L18 23 5 7Z"/><path class="glass-stem" d="M18 23v16m-8 0h16"/><path class="glass-glint" d="m11 10 5 6"/></svg><i></i></div><p class="eyebrow">취향을 고르는 시간</p><h1 tabindex="-1">${q.title}</h1><p class="hint">가장 끌리는 한 가지를 선택해주세요.</p></div><fieldset><legend class="sr-only">${q.title}</legend><div class="options">${q.options.map(([code, label, desc], index) => `<label class="option ${answers[q.key] === code ? 'selected' : ''}" style="--option-index:${index}"><input type="radio" name="answer" value="${code}" ${answers[q.key] === code ? 'checked' : ''}><span class="option-index" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="option-copy">${label}${desc ? `<small>${desc}</small>` : ''}</span><span class="check" aria-hidden="true"></span></label>`).join('')}</div></fieldset></div><div class="actions"><button class="primary" type="submit" ${answers[q.key] ? '' : 'disabled'}><span>${step === questions.length - 1 ? '나의 칵테일 찾기' : '다음'}</span><span class="button-arrow" aria-hidden="true">→</span></button></div></form>`;
   app.querySelector('form').onchange = event => {
     if (transitioning || busy || !q.options.some(([code]) => code === event.target.value)) return;
     answers[q.key] = event.target.value;

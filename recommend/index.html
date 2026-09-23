@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fffcf3">
+  <meta name="theme-color" content="#0d0812">
   <meta name="description" content="여섯 가지 취향을 골라 나에게 어울리는 칵테일을 찾아보세요.">
   <link rel="icon" type="image/png" href="/onz.png">
   <title>ONZ · 나를 위한 한 잔</title>
+  <script>try { document.documentElement.dataset.theme = localStorage.getItem('onz-theme') === 'light' ? 'light' : 'dark' } catch { document.documentElement.dataset.theme = 'dark' }</script>
   <link rel="stylesheet" href="./style.css">
   <script type="module" src="./app.js"></script>
 </head>
@@ -14,8 +15,8 @@
   <a class="skip-link" href="#main">질문으로 건너뛰기</a>
   <header class="header">
     <button id="nav-back" class="icon-button" aria-label="이전 질문" type="button">←</button>
-    <a class="brand" href="/" aria-label="ONZ 처음으로">onz<span>나를 위한 한 잔</span></a>
-    <span class="header-spacer" aria-hidden="true"></span>
+    <a class="brand" href="/" aria-label="ONZ 처음으로"><img src="/logo/onz-logo.png" alt="onz"><span>나를 위한 한 잔</span></a>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="라이트 모드로 전환" title="라이트 모드로 전환">라이트</button>
   </header>
   <main id="main" tabindex="-1" aria-label="칵테일 맞춤 추천">
     <div id="progress-region">

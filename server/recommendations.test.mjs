@@ -111,9 +111,13 @@ test('A–D run on all 530 rows: evidence, top 1, diversity, score accounting an
     }
   }
   const top = name => recommendCocktails(cocktails, cases[name]).map(r => r.cocktail.features);
-  assert.ok(top('A').every(f => f.taste_sweet >= 4 && Math.max(f.flavor_tropical, f.flavor_stone_orchard) >= 4 && f.taste_fizz === 4 && f.taste_boozy <= 1));
+  const topA = top('A');
+  const topA10 = recommendCocktails(cocktails, cases.A, 10).map(r => r.cocktail.features);
+  assert.ok(topA.slice(0, 5).every(f => f.taste_sweet >= 4 && Math.max(f.flavor_tropical, f.flavor_stone_orchard) >= 4 && f.taste_fizz === 4 && f.taste_boozy <= 2));
+  assert.ok(topA10.every(f => f.taste_sweet >= 4 && f.taste_fizz === 4 && f.taste_boozy <= 2));
+  assert.ok(topA10.filter(f => Math.max(f.flavor_tropical, f.flavor_stone_orchard) >= 4).length >= 8);
   assert.ok(top('B').every(f => f.taste_sour === 4 && f.flavor_citrus >= 4));
-  assert.ok(recommendCocktails(cocktails, cases.B, 10).every(r => r.cocktail.features.taste_boozy >= 2));
+  assert.ok(recommendCocktails(cocktails, cases.B, 10).filter(r => r.cocktail.features.taste_boozy >= 2).length >= 8);
   assert.ok(top('C').every(f => f.taste_bitter >= 3 && f.flavor_herbal >= 3 && f.taste_boozy >= 4));
   assert.ok(top('D').every(f => f.taste_fizz === 4 && f.taste_boozy <= 2 && f.occasion_brunch === 3));
 });

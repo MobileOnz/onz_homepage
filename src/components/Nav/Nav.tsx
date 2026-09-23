@@ -1,6 +1,30 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { Logo } from '../Logo/Logo'
 import styles from './Nav.module.css'
+
+function ThemeToggle() {
+  const [theme, setTheme] = useState(() => document.documentElement.dataset.theme || 'dark')
+  const toggle = () => {
+    const next = theme === 'dark' ? 'light' : 'dark'
+    document.documentElement.dataset.theme = next
+    try { localStorage.setItem('onz-theme', next) } catch { /* Theme still applies for this page. */ }
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0d0812' : '#ffffff')
+    setTheme(next)
+  }
+
+  return (
+    <button
+      className={styles.themeToggle}
+      type="button"
+      onClick={toggle}
+      aria-label={`${theme === 'dark' ? '라이트' : '다크'} 모드로 전환`}
+      title={`${theme === 'dark' ? '라이트' : '다크'} 모드로 전환`}
+    >
+      {theme === 'dark' ? '라이트' : '다크'}
+    </button>
+  )
+}
 
 const CATEGORIES = [
   { href: '#story', label: '스토리' },
@@ -36,15 +60,17 @@ export function Nav({ variant }: NavProps) {
                 <line x1="16.5" y1="16.5" x2="21" y2="21" />
               </svg>
               <a className={styles.appLink} href="#app">앱</a>
+              <ThemeToggle />
             </div>
           </>
         )}
 
         {variant === 'article' && (
           <Link className={styles.back} to="/">
-            ← 매거진
+          ← 매거진
           </Link>
         )}
+        {variant === 'article' && <ThemeToggle />}
       </div>
     </nav>
   )
