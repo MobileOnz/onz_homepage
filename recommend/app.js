@@ -92,8 +92,8 @@ function waitForLoadingVideo(video) {
   });
 }
 function updateNavigation() {
-  navBack.disabled = busy || transitioning || (!embedded && step === 0 && !!app.querySelector('form'));
-  navBack.setAttribute('aria-label', app.querySelector('form') && step > 0 ? '이전 질문' : embedded ? '앱으로 돌아가기' : '답변 수정');
+  navBack.disabled = busy || transitioning;
+  navBack.setAttribute('aria-label', embedded ? '앱으로 돌아가기' : '홈으로 이동');
 }
 function updateProgress() {
   document.querySelector('#progress-region').hidden = false;
@@ -225,9 +225,8 @@ async function submit() {
 render();
 function goBack() {
   if (transitioning || busy) return;
-  if (app.querySelector('form') && step > 0) changeStep(step - 1);
-  else if (embedded) window.ReactNativeWebView.postMessage('onz:close');
-  else if (!app.querySelector('form')) changeStep(step);
+  if (embedded) window.ReactNativeWebView.postMessage('onz:close');
+  else window.location.assign('/');
 }
 navBack.onclick = goBack;
 if (embedded) {
