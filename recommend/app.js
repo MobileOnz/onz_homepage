@@ -91,9 +91,16 @@ function waitForLoadingVideo(video) {
     reducedMotion.addEventListener('change', onMotionChange);
   });
 }
+// The result and error screens keep `step` on the last question, so back returns to it.
+function stepBackTarget() {
+  if (!app.querySelector('.question-form')) return step;
+  return step > 0 ? step - 1 : -1;
+}
 function updateNavigation() {
   navBack.disabled = busy || transitioning;
-  navBack.setAttribute('aria-label', embedded ? '앱으로 돌아가기' : '홈으로 이동');
+  const label = stepBackTarget() >= 0 ? '이전 질문' : embedded ? '앱으로 돌아가기' : '홈으로 이동';
+  navBack.setAttribute('aria-label', label);
+  navBack.title = label;
 }
 function updateProgress() {
   document.querySelector('#progress-region').hidden = false;
@@ -225,6 +232,9 @@ async function submit() {
 render();
 function goBack() {
   if (transitioning || busy) return;
+  const target = stepBackTarget();
+  // Leaving is only for the first question; elsewhere back keeps the answers already given.
+  if (target >= 0) return void changeStep(target);
   if (embedded) window.ReactNativeWebView.postMessage('onz:close');
   else window.location.assign('/');
 }
