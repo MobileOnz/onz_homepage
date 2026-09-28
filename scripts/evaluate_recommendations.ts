@@ -3,7 +3,7 @@ import { cocktails } from '../recommendation/data.ts';
 import { cases } from '../recommendation/cases.ts';
 import { rankCocktails, recommendCocktails } from '../recommendation/recommendCocktails.ts';
 import { cocktailFamily, dominantFlavors } from '../recommendation/diversityReranker.ts';
-const lines = ['# Recommendation evaluation — all 530 CSV records', '', 'Scores are model similarities, not probabilities. Rank 1 is preserved; ranks 2 onward use diversity, so scores can be non-monotonic.', ''];
+const lines = ['# Recommendation evaluation — all 105 CSV records', '', 'Scores are model similarities, not probabilities. Rank 1 is preserved; ranks 2 onward use diversity, so scores can be non-monotonic.', ''];
 for (const [name, answers] of Object.entries(cases)) {
   const ranked = rankCocktails(cocktails, answers);
   const results = recommendCocktails(cocktails, answers, 10);

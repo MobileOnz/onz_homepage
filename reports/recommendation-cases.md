@@ -1,4 +1,4 @@
-# Recommendation evaluation — all 530 CSV records
+# Recommendation evaluation — all 105 CSV records
 
 Scores are model similarities, not probabilities. Rank 1 is preserved; ranks 2 onward use diversity, so scores can be non-monotonic.
 
@@ -8,30 +8,30 @@ Answers: {"taste":"SWEET","aroma":"FRUIT","alcohol":"MILD","texture":"FIZZY","oc
 
 | Rank | Cocktail | Score | Taste | Flavor | Alcohol | Texture | Occasion | Beginner | ABV | Boozy | Sweet/Sour/Bitter | Body/Fizz | Family | Dominant flavor |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|
-| 1 | Rum Mango Fizz | 0.9925 | 1.000 | 1.000 | 1.000 | 1.000 | 1.000 | 0.850 | 12 | 1 | 4/3/0 | 2/4 | fizz | flavor_tropical |
-| 2 | Plum Soju Cocktail | 0.9409 | 1.000 | 0.800 | 0.982 | 1.000 | 1.000 | 0.890 | 10 | 1 | 4/3/0 | 1/4 | id:402 | flavor_stone_orchard |
-| 3 | Sangria Blanca | 0.9205 | 1.000 | 0.800 | 0.880 | 1.000 | 1.000 | 0.890 | 12 | 2 | 4/2/0 | 2/4 | sangria | flavor_citrus, flavor_stone_orchard |
-| 4 | Rio Carnival | 0.9319 | 1.000 | 0.800 | 0.982 | 1.000 | 1.000 | 0.710 | 14 | 1 | 4/3/0 | 2/4 | id:415 | flavor_tropical |
-| 5 | South Beach | 0.9387 | 1.000 | 0.800 | 0.991 | 1.000 | 1.000 | 0.810 | 13 | 1 | 4/3/0 | 2/4 | id:461 | flavor_citrus, flavor_tropical |
-| 6 | Saint Martin Bucket | 0.9319 | 1.000 | 0.800 | 0.982 | 1.000 | 1.000 | 0.710 | 14 | 1 | 4/3/0 | 2/4 | id:443 | flavor_tropical |
-| 7 | Turks Punch | 0.9319 | 1.000 | 0.800 | 0.982 | 1.000 | 1.000 | 0.710 | 14 | 1 | 4/3/0 | 2/4 | punch | flavor_citrus, flavor_tropical |
-| 8 | Rum Bucket | 0.9405 | 1.000 | 0.800 | 1.000 | 1.000 | 1.000 | 0.810 | 12 | 1 | 4/3/0 | 2/4 | id:427 | flavor_tropical |
-| 9 | Pineapple Mojito | 0.9187 | 1.000 | 0.800 | 0.871 | 1.000 | 1.000 | 0.890 | 13 | 2 | 4/3/0 | 1/4 | mojito | flavor_mint |
-| 10 | Varadero Beach | 0.9387 | 1.000 | 0.800 | 0.991 | 1.000 | 1.000 | 0.810 | 13 | 1 | 4/3/0 | 2/4 | id:498 | flavor_citrus, flavor_tropical |
+| 1 | Barracuda | 0.8967 | 1.000 | 0.800 | 0.825 | 1.000 | 1.000 | 0.635 | 16 | 2 | 4/3/0 | 2/4 | id:104 | flavor_tropical |
+| 2 | Bellini | 0.8651 | 0.800 | 1.000 | 0.825 | 1.000 | 0.667 | 0.870 | 8 | 0 | 3/1/0 | 2/4 | id:2 | flavor_stone_orchard |
+| 3 | Porn Star Martini | 0.8857 | 1.000 | 1.000 | 0.811 | 0.250 | 1.000 | 0.970 | 17 | 2 | 4/3/0 | 2/1 | martini | flavor_tropical |
+| 4 | Piña Colada | 0.8024 | 0.800 | 1.000 | 0.986 | 0.000 | 0.667 | 0.970 | 13 | 1 | 5/1/0 | 5/0 | colada | flavor_tropical |
+| 5 | Singapore Sling | 0.7730 | 1.000 | 0.600 | 0.931 | 0.000 | 1.000 | 0.735 | 17 | 1 | 4/3/1 | 3/0 | id:82 | flavor_tropical, flavor_berry_red |
+| 6 | Pisco Punch | 0.7606 | 1.000 | 0.800 | 0.811 | 0.000 | 0.667 | 0.635 | 17 | 2 | 4/3/0 | 2/0 | punch | flavor_tropical |
+| 7 | Sex on the Beach | 0.7385 | 0.800 | 0.600 | 1.000 | 0.000 | 1.000 | 0.970 | 12 | 1 | 5/2/0 | 2/0 | id:21 | flavor_citrus, flavor_berry_red, flavor_stone_orchard |
+| 8 | Missionary's Downfall | 0.7401 | 1.000 | 0.600 | 0.959 | 0.000 | 0.667 | 0.635 | 15 | 1 | 4/4/0 | 2/0 | id:92 | flavor_mint |
+| 9 | Mary Pickford | 0.7551 | 1.000 | 0.800 | 0.783 | 0.000 | 0.667 | 0.635 | 19 | 2 | 4/1/0 | 2/0 | id:13 | flavor_tropical |
+| 10 | Chartreuse Swizzle | 0.7312 | 1.000 | 0.600 | 0.825 | 1.000 | 0.000 | 0.325 | 16 | 2 | 4/3/0 | 2/4 | id:100 | flavor_herbal |
 
-Pure-score top 5: Rum Mango Fizz, Peach Soju Fizz, Plum Soju Cocktail, Rum Bucket, South Beach
+Pure-score top 5: Barracuda, Porn Star Martini, Bellini, Piña Colada, Singapore Sling
 
 Normalized weights: {"taste":0.3,"flavor":0.25,"alcohol":0.2,"texture":0.1,"occasion":0.1,"beginnerFit":0.05}
 
 Top 5 reasons:
 
-- Rum Mango Fizz: 단맛 4/5로, 선택한 취향과 가까워요. 열대과일 향 5/5로, 선택한 취향과 가까워요. 체감 술맛 1/5로, 선택한 취향과 가까워요.
-- Plum Soju Cocktail: 단맛 4/5로, 선택한 취향과 가까워요. 복숭아·사과 계열 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 1/5로, 선택한 취향과 가까워요.
-- Sangria Blanca: 단맛 4/5로, 선택한 취향과 가까워요. 복숭아·사과 계열 향 4/5로, 선택한 취향과 가까워요. 파티 적합도 3/3로, 선택한 취향과 가까워요.
-- Rio Carnival: 단맛 4/5로, 선택한 취향과 가까워요. 열대과일 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 1/5로, 선택한 취향과 가까워요.
-- South Beach: 단맛 4/5로, 선택한 취향과 가까워요. 열대과일 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 1/5로, 선택한 취향과 가까워요.
+- Barracuda: 단맛 4/5로, 선택한 취향과 가까워요. 열대과일 향 4/5로, 선택한 취향과 가까워요. 파티 적합도 3/3로, 선택한 취향과 가까워요.
+- Bellini: 복숭아·사과 계열 향 5/5로, 선택한 취향과 가까워요. 단맛 3/5로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요.
+- Porn Star Martini: 단맛 4/5로, 선택한 취향과 가까워요. 열대과일 향 5/5로, 선택한 취향과 가까워요. 파티 적합도 3/3로, 선택한 취향과 가까워요.
+- Piña Colada: 열대과일 향 5/5로, 선택한 취향과 가까워요. 단맛 5/5로, 선택한 취향과 가까워요. 체감 술맛 1/5로, 선택한 취향과 가까워요.
+- Singapore Sling: 단맛 4/5로, 선택한 취향과 가까워요. 체감 술맛 1/5로, 선택한 취향과 가까워요. 파티 적합도 3/3로, 선택한 취향과 가까워요.
 
-Top without beginner contribution: Rum Mango Fizz; with it: Rum Mango Fizz. Beginner contribution ceiling: 0.0500.
+Top without beginner contribution: Barracuda; with it: Barracuda. Beginner contribution ceiling: 0.0500.
 
 ## Case B
 
@@ -39,18 +39,18 @@ Answers: {"taste":"SOUR","aroma":"CITRUS","alcohol":"MEDIUM","texture":"LIGHT","
 
 | Rank | Cocktail | Score | Taste | Flavor | Alcohol | Texture | Occasion | Beginner | ABV | Boozy | Sweet/Sour/Bitter | Body/Fizz | Family | Dominant flavor |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|
-| 1 | Margarita | 0.9532 | 1.000 | 1.000 | 0.969 | 1.000 | 0.667 | 0.855 | 25 | 3 | 3/4/0 | 1/0 | margarita | flavor_citrus |
-| 2 | Caipirinha | 0.9503 | 1.000 | 1.000 | 0.951 | 0.750 | 1.000 | 0.703 | 27 | 3 | 3/4/0 | 2/0 | id:35 | flavor_citrus |
-| 3 | Gin Rickey | 0.9488 | 1.000 | 1.000 | 0.951 | 0.750 | 1.000 | 0.672 | 16 | 3 | 1/4/0 | 2/4 | id:253 | flavor_citrus |
-| 4 | Hemingway Special | 0.9412 | 1.000 | 1.000 | 0.960 | 1.000 | 0.667 | 0.650 | 17 | 3 | 2/4/0 | 1/0 | id:42 | flavor_citrus |
-| 5 | Lavender Lemonade Cocktail | 0.9259 | 1.000 | 1.000 | 0.658 | 1.000 | 1.000 | 0.888 | 10 | 1 | 4/4/0 | 1/4 | id:313 | flavor_citrus, flavor_floral |
-| 6 | Mint Daiquiri | 0.9023 | 1.000 | 0.800 | 0.951 | 0.750 | 1.000 | 0.743 | 16 | 3 | 3/4/0 | 2/0 | daiquiri | flavor_mint |
-| 7 | Citrus Basil Smash | 0.9266 | 1.000 | 1.000 | 0.822 | 0.750 | 1.000 | 0.743 | 15 | 2 | 3/4/0 | 2/0 | smash | flavor_citrus, flavor_herbal |
-| 8 | Basil Limoncello | 0.8961 | 1.000 | 1.000 | 0.831 | 0.750 | 0.667 | 0.765 | 16 | 2 | 4/4/0 | 2/0 | id:139 | flavor_citrus |
-| 9 | Lemon Drop Martini | 0.8886 | 1.000 | 1.000 | 0.987 | 1.000 | 0.000 | 0.825 | 23 | 3 | 4/4/0 | 1/0 | martini | flavor_citrus |
-| 10 | South Side | 0.8781 | 1.000 | 0.800 | 0.822 | 0.750 | 1.000 | 0.773 | 15 | 2 | 3/4/0 | 2/0 | id:51 | flavor_mint |
+| 1 | Margarita | 0.9485 | 1.000 | 1.000 | 0.952 | 1.000 | 0.667 | 0.830 | 25 | 3 | 3/4/0 | 1/0 | margarita | flavor_citrus |
+| 2 | Caipirinha | 0.9421 | 1.000 | 1.000 | 0.924 | 0.750 | 1.000 | 0.645 | 27 | 3 | 3/4/0 | 2/0 | id:35 | flavor_citrus |
+| 3 | Hemingway Special | 0.9335 | 1.000 | 1.000 | 0.938 | 1.000 | 0.667 | 0.585 | 17 | 3 | 2/4/0 | 1/0 | id:42 | flavor_citrus |
+| 4 | Daiquiri | 0.9040 | 1.000 | 0.800 | 0.979 | 1.000 | 0.667 | 0.830 | 23 | 3 | 3/4/0 | 1/0 | daiquiri | flavor_citrus |
+| 5 | Lemon Drop Martini | 0.8855 | 1.000 | 1.000 | 0.979 | 1.000 | 0.000 | 0.792 | 23 | 3 | 4/4/0 | 1/0 | martini | flavor_citrus |
+| 6 | Tommy’s Margarita | 0.9214 | 1.000 | 1.000 | 0.966 | 0.750 | 0.667 | 0.733 | 19 | 3 | 3/4/0 | 2/0 | margarita | flavor_citrus |
+| 7 | South Side | 0.8697 | 1.000 | 0.800 | 0.790 | 0.750 | 1.000 | 0.733 | 15 | 2 | 3/4/0 | 2/0 | id:51 | flavor_mint |
+| 8 | White Lady | 0.8575 | 1.000 | 1.000 | 0.979 | 0.750 | 0.000 | 0.733 | 23 | 3 | 3/4/0 | 2/0 | id:25 | flavor_citrus |
+| 9 | Mai Tai | 0.8463 | 1.000 | 0.800 | 0.952 | 0.500 | 0.667 | 0.785 | 25 | 3 | 4/4/0 | 3/0 | id:78 | flavor_citrus |
+| 10 | Sea Breeze | 0.8395 | 1.000 | 0.800 | 0.588 | 0.750 | 1.000 | 0.940 | 9 | 1 | 2/4/1 | 2/0 | id:20 | flavor_citrus, flavor_berry_red |
 
-Pure-score top 5: Margarita, Caipirinha, Gin Rickey, Hemingway Special, Citrus Basil Smash
+Pure-score top 5: Margarita, Caipirinha, Hemingway Special, Tommy’s Margarita, Daiquiri
 
 Normalized weights: {"taste":0.3,"flavor":0.25,"alcohol":0.2,"texture":0.1,"occasion":0.1,"beginnerFit":0.05}
 
@@ -58,9 +58,9 @@ Top 5 reasons:
 
 - Margarita: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 5/5로, 선택한 취향과 가까워요. 체감 술맛 3/5로, 선택한 취향과 가까워요.
 - Caipirinha: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 5/5로, 선택한 취향과 가까워요. 체감 술맛 3/5로, 선택한 취향과 가까워요.
-- Gin Rickey: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 5/5로, 선택한 취향과 가까워요. 체감 술맛 3/5로, 선택한 취향과 가까워요.
 - Hemingway Special: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 5/5로, 선택한 취향과 가까워요. 체감 술맛 3/5로, 선택한 취향과 가까워요.
-- Lavender Lemonade Cocktail: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 5/5로, 선택한 취향과 가까워요. 기분전환 적합도 3/3로, 선택한 취향과 가까워요.
+- Daiquiri: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 3/5로, 선택한 취향과 가까워요.
+- Lemon Drop Martini: 새콤한 맛 4/4로, 선택한 취향과 가까워요. 시트러스 향 5/5로, 선택한 취향과 가까워요. 체감 술맛 3/5로, 선택한 취향과 가까워요.
 
 Top without beginner contribution: Caipirinha; with it: Margarita. Beginner contribution ceiling: 0.0500.
 
@@ -70,30 +70,30 @@ Answers: {"taste":"BITTER","aroma":"HERBAL","alcohol":"STRONG","texture":"RICH",
 
 | Rank | Cocktail | Score | Taste | Flavor | Alcohol | Texture | Occasion | Beginner | ABV | Boozy | Sweet/Sour/Bitter | Body/Fizz | Family | Dominant flavor |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|
-| 1 | Black Manhattan | 0.8979 | 1.000 | 0.800 | 0.964 | 0.750 | 1.000 | 0.600 | 34 | 5 | 2/1/4 | 4/0 | manhattan | flavor_herbal, flavor_oak_caramel |
-| 2 | Hanky Panky | 0.8459 | 1.000 | 0.800 | 0.871 | 0.750 | 0.667 | 0.600 | 29 | 4 | 2/1/4 | 4/0 | id:65 | flavor_herbal |
-| 3 | Boulevardier | 0.8292 | 1.000 | 0.600 | 0.871 | 0.750 | 1.000 | 0.600 | 29 | 4 | 2/1/4 | 4/0 | id:61 | flavor_oak_caramel |
-| 4 | Vieux Carré | 0.8111 | 0.800 | 0.600 | 0.956 | 1.000 | 1.000 | 0.600 | 35 | 5 | 3/1/3 | 5/0 | id:83 | flavor_oak_caramel |
-| 5 | Bobby Burns | 0.8103 | 0.800 | 0.800 | 0.827 | 0.750 | 1.000 | 0.600 | 24 | 4 | 3/0/3 | 4/0 | id:162 | flavor_herbal, flavor_oak_caramel |
-| 6 | Rabo de Galo | 0.8009 | 1.000 | 0.600 | 0.871 | 0.750 | 0.667 | 0.700 | 29 | 4 | 2/1/4 | 4/0 | id:81 | flavor_herbal |
-| 7 | Mezcal Negroni | 0.7734 | 0.800 | 0.800 | 0.809 | 0.750 | 0.667 | 0.600 | 22 | 4 | 2/0/5 | 4/0 | negroni | flavor_smoky |
-| 8 | Dark Garment | 0.7568 | 0.800 | 0.600 | 0.809 | 0.750 | 1.000 | 0.600 | 22 | 4 | 3/1/3 | 4/0 | id:222 | flavor_oak_caramel |
-| 9 | Rob Roy | 0.7621 | 0.800 | 0.600 | 0.836 | 0.750 | 1.000 | 0.600 | 25 | 4 | 2/0/3 | 4/0 | id:420 | flavor_oak_caramel |
-| 10 | Mugwort Martini | 0.7722 | 0.800 | 1.000 | 0.844 | 0.500 | 0.333 | 0.600 | 26 | 4 | 2/1/3 | 3/0 | martini | flavor_herbal |
+| 1 | Hanky Panky | 0.8399 | 1.000 | 0.800 | 0.866 | 0.750 | 0.667 | 0.500 | 29 | 4 | 2/1/4 | 4/0 | id:65 | flavor_herbal |
+| 2 | Boulevardier | 0.8232 | 1.000 | 0.600 | 0.866 | 0.750 | 1.000 | 0.500 | 29 | 4 | 2/1/4 | 4/0 | id:61 | flavor_oak_caramel |
+| 3 | Rabo de Galo | 0.7962 | 1.000 | 0.600 | 0.866 | 0.750 | 0.667 | 0.625 | 29 | 4 | 2/1/4 | 4/0 | id:81 | flavor_herbal |
+| 4 | Vieux Carré | 0.8012 | 0.800 | 0.600 | 0.931 | 1.000 | 1.000 | 0.500 | 35 | 5 | 3/1/3 | 5/0 | id:83 | flavor_oak_caramel |
+| 5 | Tipperary | 0.7772 | 0.600 | 0.800 | 0.986 | 0.750 | 1.000 | 0.500 | 29 | 5 | 3/0/2 | 4/0 | id:105 | flavor_herbal |
+| 6 | Remember the Maine | 0.7567 | 0.800 | 0.400 | 0.959 | 1.000 | 1.000 | 0.500 | 33 | 5 | 3/1/3 | 5/0 | id:103 | flavor_oak_caramel |
+| 7 | Negroni | 0.7439 | 0.800 | 0.800 | 0.811 | 0.500 | 0.667 | 0.500 | 25 | 4 | 2/0/5 | 3/0 | negroni | flavor_herbal |
+| 8 | Stinger | 0.7262 | 0.600 | 0.800 | 0.866 | 0.750 | 0.667 | 0.625 | 31 | 4 | 4/0/2 | 4/0 | id:55 | flavor_mint |
+| 9 | Mint Julep | 0.7179 | 0.400 | 1.000 | 1.000 | 0.500 | 0.667 | 0.625 | 30 | 5 | 3/0/1 | 3/0 | julep | flavor_mint |
+| 10 | Rusty Nail | 0.7217 | 0.600 | 0.600 | 0.959 | 0.750 | 1.000 | 0.500 | 33 | 5 | 3/0/2 | 4/0 | id:74 | flavor_oak_caramel |
 
-Pure-score top 5: Black Manhattan, Hanky Panky, Boulevardier, Vieux Carré, Bobby Burns
+Pure-score top 5: Hanky Panky, Boulevardier, Vieux Carré, Rabo de Galo, Tipperary
 
 Normalized weights: {"taste":0.3,"flavor":0.25,"alcohol":0.2,"texture":0.1,"occasion":0.1,"beginnerFit":0.05}
 
 Top 5 reasons:
 
-- Black Manhattan: 쌉싸름한 맛 4/5로, 선택한 취향과 가까워요. 허브 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 5/5로, 선택한 취향과 가까워요.
 - Hanky Panky: 쌉싸름한 맛 4/5로, 선택한 취향과 가까워요. 허브 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 4/5로, 선택한 취향과 가까워요.
 - Boulevardier: 쌉싸름한 맛 4/5로, 선택한 취향과 가까워요. 천천히 마시기 적합도 3/3로, 선택한 취향과 가까워요. 체감 술맛 4/5로, 선택한 취향과 가까워요.
+- Rabo de Galo: 쌉싸름한 맛 4/5로, 선택한 취향과 가까워요. 체감 술맛 4/5로, 선택한 취향과 가까워요. 도수 29%로, 선택한 취향과 가까워요.
 - Vieux Carré: 쌉싸름한 맛 3/5로, 선택한 취향과 가까워요. 체감 술맛 5/5로, 선택한 취향과 가까워요. 천천히 마시기 적합도 3/3로, 선택한 취향과 가까워요.
-- Bobby Burns: 쌉싸름한 맛 3/5로, 선택한 취향과 가까워요. 허브 향 4/5로, 선택한 취향과 가까워요. 천천히 마시기 적합도 3/3로, 선택한 취향과 가까워요.
+- Tipperary: 허브 향 4/5로, 선택한 취향과 가까워요. 체감 술맛 5/5로, 선택한 취향과 가까워요. 천천히 마시기 적합도 3/3로, 선택한 취향과 가까워요.
 
-Top without beginner contribution: Black Manhattan; with it: Black Manhattan. Beginner contribution ceiling: 0.0500.
+Top without beginner contribution: Hanky Panky; with it: Hanky Panky. Beginner contribution ceiling: 0.0500.
 
 ## Case D
 
@@ -101,28 +101,28 @@ Answers: {"taste":"UNKNOWN","aroma":"UNKNOWN","alcohol":"MILD","texture":"FIZZY"
 
 | Rank | Cocktail | Score | Taste | Flavor | Alcohol | Texture | Occasion | Beginner | ABV | Boozy | Sweet/Sour/Bitter | Body/Fizz | Family | Dominant flavor |
 |---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|---|---|---|
-| 1 | Strawberry Lemonade | 0.9769 | UNKNOWN | UNKNOWN | 0.956 | 1.000 | 1.000 | 0.970 | 7 | 1 | 4/4/0 | 1/4 | id:471 | flavor_berry_red |
-| 2 | Rose Champagne Punch | 0.9754 | UNKNOWN | UNKNOWN | 0.982 | 1.000 | 1.000 | 0.850 | 10 | 1 | 4/2/0 | 2/4 | punch | flavor_floral |
-| 3 | Prosecco Spritz | 0.9759 | UNKNOWN | UNKNOWN | 0.973 | 1.000 | 1.000 | 0.890 | 9 | 1 | 3/1/2 | 1/4 | spritz | flavor_citrus |
-| 4 | Strawberry Bellini | 0.9720 | UNKNOWN | UNKNOWN | 0.964 | 1.000 | 1.000 | 0.890 | 8 | 1 | 3/2/0 | 2/4 | id:468 | flavor_berry_red |
-| 5 | Buck's Fizz | 0.9714 | UNKNOWN | UNKNOWN | 0.956 | 1.000 | 1.000 | 0.920 | 7 | 1 | 3/2/0 | 2/4 | fizz | flavor_citrus |
-| 6 | Pimm's Cup | 0.9607 | UNKNOWN | UNKNOWN | 0.947 | 1.000 | 1.000 | 0.860 | 6 | 1 | 3/2/0 | 1/4 | id:395 | flavor_citrus, flavor_herbal |
-| 7 | White Sangria | 0.9344 | UNKNOWN | UNKNOWN | 0.880 | 1.000 | 1.000 | 0.890 | 12 | 2 | 4/2/0 | 2/4 | sangria | flavor_stone_orchard |
-| 8 | Grapefruit Ade | 0.9493 | UNKNOWN | UNKNOWN | 0.893 | 1.000 | 1.000 | 0.970 | 0 | 1 | 4/3/1 | 1/4 | id:263 | flavor_citrus |
-| 9 | Green Grape Ade | 0.9493 | UNKNOWN | UNKNOWN | 0.893 | 1.000 | 1.000 | 0.970 | 0 | 1 | 5/2/0 | 1/4 | id:264 | flavor_stone_orchard |
-| 10 | Raspberry Bellini | 0.9557 | UNKNOWN | UNKNOWN | 0.938 | 1.000 | 1.000 | 0.850 | 5 | 1 | 3/2/0 | 2/4 | id:409 | flavor_berry_red |
+| 1 | Mimosa | 0.9160 | UNKNOWN | UNKNOWN | 0.811 | 1.000 | 1.000 | 1.000 | 7 | 0 | 3/2/0 | 1/4 | id:14 | flavor_citrus |
+| 2 | Ramos Fizz | 0.9055 | UNKNOWN | UNKNOWN | 0.866 | 1.000 | 1.000 | 0.685 | 11 | 2 | 4/3/0 | 5/4 | fizz | flavor_creamy_nutty |
+| 3 | Bellini | 0.9077 | UNKNOWN | UNKNOWN | 0.825 | 1.000 | 1.000 | 0.870 | 8 | 0 | 3/1/0 | 2/4 | id:2 | flavor_stone_orchard |
+| 4 | Aperol Spritz | 0.8931 | UNKNOWN | UNKNOWN | 0.972 | 1.000 | 0.667 | 0.815 | 10 | 1 | 2/1/3 | 1/4 | spritz | flavor_citrus |
+| 5 | Russian Spring Punch | 0.8664 | UNKNOWN | UNKNOWN | 0.945 | 1.000 | 0.667 | 0.685 | 16 | 1 | 4/4/0 | 2/4 | punch | flavor_berry_red |
+| 6 | French 75 | 0.8370 | UNKNOWN | UNKNOWN | 0.866 | 1.000 | 0.667 | 0.735 | 13 | 2 | 3/3/0 | 2/4 | id:38 | flavor_citrus |
+| 7 | Barracuda | 0.8075 | UNKNOWN | UNKNOWN | 0.825 | 1.000 | 0.667 | 0.635 | 16 | 2 | 4/3/0 | 2/4 | id:104 | flavor_tropical |
+| 8 | Moscow Mule | 0.7650 | UNKNOWN | UNKNOWN | 0.986 | 1.000 | 0.000 | 0.940 | 13 | 1 | 3/2/0 | 1/4 | mule | flavor_spice |
+| 9 | Mojito | 0.7499 | UNKNOWN | UNKNOWN | 0.945 | 1.000 | 0.000 | 0.970 | 16 | 1 | 3/3/0 | 1/4 | mojito | flavor_mint |
+| 10 | Cuba Libre | 0.7655 | UNKNOWN | UNKNOWN | 0.972 | 1.000 | 0.000 | 1.000 | 10 | 1 | 4/1/0 | 1/4 | id:5 | flavor_citrus |
 
-Pure-score top 5: Strawberry Lemonade, Prosecco Spritz, Rose Champagne Punch, Elderflower Spritz, Strawberry Bellini
+Pure-score top 5: Mimosa, Bellini, Ramos Fizz, Aperol Spritz, Russian Spring Punch
 
 Normalized weights: {"taste":0,"flavor":0,"alcohol":0.4444444444444445,"texture":0.22222222222222224,"occasion":0.22222222222222224,"beginnerFit":0.11111111111111112}
 
 Top 5 reasons:
 
-- Strawberry Lemonade: 체감 술맛 1/5로, 선택한 취향과 가까워요. 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요.
-- Rose Champagne Punch: 체감 술맛 1/5로, 선택한 취향과 가까워요. 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요.
-- Prosecco Spritz: 체감 술맛 1/5로, 선택한 취향과 가까워요. 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요.
-- Strawberry Bellini: 체감 술맛 1/5로, 선택한 취향과 가까워요. 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요.
-- Buck's Fizz: 체감 술맛 1/5로, 선택한 취향과 가까워요. 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요.
+- Mimosa: 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요. 체감 술맛 0/5로, 선택한 취향과 가까워요.
+- Ramos Fizz: 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요. 체감 술맛 2/5로, 선택한 취향과 가까워요.
+- Bellini: 브런치 적합도 3/3로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요. 체감 술맛 0/5로, 선택한 취향과 가까워요.
+- Aperol Spritz: 체감 술맛 1/5로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요. 도수 10%로, 선택한 취향과 가까워요.
+- Russian Spring Punch: 체감 술맛 1/5로, 선택한 취향과 가까워요. 탄산감 4/4로, 선택한 취향과 가까워요. 도수 16%로, 선택한 취향과 가까워요.
 
-Top without beginner contribution: Rose Champagne Punch; with it: Strawberry Lemonade. Beginner contribution ceiling: 0.1111.
+Top without beginner contribution: Ramos Fizz; with it: Mimosa. Beginner contribution ceiling: 0.1111.
 

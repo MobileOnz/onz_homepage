@@ -24,7 +24,7 @@ test('emitted API runs using JavaScript artifacts, without source TypeScript fil
       writeHead(value) { status = value; }, end(value) { body = JSON.parse(value); },
     });
     assert.equal(status, 200);
-    assert.equal(body.datasetCount, 530);
+    assert.equal(body.datasetCount, 105);
     assert.equal(body.data.length, 5);
   } finally { await rm(output, { recursive: true, force: true }); }
 });

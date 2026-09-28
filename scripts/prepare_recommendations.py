@@ -8,7 +8,7 @@ from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-source = ROOT / 'onz_cocktails_530.csv'
+source = ROOT / 'onz_cocktails_105.csv'
 with source.open(encoding='utf-8-sig', newline='') as stream:
     rows = list(csv.DictReader(stream))
 features = [key for key in rows[0] if key.startswith(('taste_', 'flavor_', 'occasion_'))]
@@ -49,14 +49,14 @@ for key in features:
     counts = Counter(record['features'][key] for record in records)
     lines.append(f'| {key} | 0 | {min(counts)} | {max(counts)} | ' + ', '.join(f'{k}: {counts[k]}' for k in sorted(counts)) + ' |')
 lines += ['', '## Categorical distributions', '']
-for key in ['v2_bases', '베이스', '스타일', 'serve', 'v2_abvBand', '도수구간', 'recipeStatus', 'source']:
+for key in ['v2_bases', '베이스', '스타일', 'serve', '도수구간', 'recipeStatus']:
     lines.append(f'- {key}: ' + json.dumps(dict(Counter(row[key] for row in rows)), ensure_ascii=False))
 lines += ['', '## Data quality', '', '- Numeric recommendation fields: no missing values.',
-          '- Images: 105 HTTP URLs on onz-cocktail.kr, 425 HTTPS URLs on raw.githubusercontent.com. Export upgrades only the known ONZ host to HTTPS; sample HTTPS availability was checked separately.',
+          '- Images: ' + json.dumps(dict(Counter(row['이미지_URL'].split('/')[2] for row in rows))) + '. Export upgrades only the known ONZ host to HTTPS.',
           '- No cocktail-family column. Name-based grouping is a documented heuristic, never a fabricated source attribute.',
-          '- `polarizing` is binary (523 zero / 7 one), not 0–5.',
-          '- `taste_fizz` is strongly bimodal (367 zero / 157 four). Percentile normalization would distort absence; use the observed linear scale.',
-          '- `recipeStatus=needs_review`: 162 records. Scores express this dataset, not independently verified sensory measurements.',
+          '- `polarizing` is binary, not 0–5.',
+          '- `taste_fizz` is strongly bimodal. Percentile normalization would distort absence; use the observed linear scale.',
+          '- Scores express this dataset, not independently verified sensory measurements.',
           '- Missing allergens are unknown, not an assurance of allergen absence.',
           '- Original Korean ABV bands and v2 bands are different categorizations; scoring uses numeric v2_abv, not either label.',
           '- The supplied recipe/origin text is retained without inventing or correcting facts.', '']

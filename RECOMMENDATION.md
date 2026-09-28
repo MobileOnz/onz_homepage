@@ -7,7 +7,7 @@
 - `src/App.tsx`: 매거진 홈 `/`, 글 상세 `/article/:slug`만 React 라우팅.
 - `recommend/index.html`, `app.js`, `style.css`: 독립 HTML 진입점. 모듈 변수 `step`, `answers`, `busy`, `transitioning`으로 상태 관리. 별도 상태 라이브러리 없음.
 - 이전 `recommend/questions.js`: 맛/분위기/계절/스타일/도수 5문항의 `[code, label, icon, description?]` 튜플.
-- 이전 `server/recommendation.mjs`: 외부 `/api/v2/cocktails/recommendation`의 한 건 응답을 전달. URL 미설정 시 사진이 없는 모히토 데모. 전체 530개 후보의 수치 속성은 이 응답으로 확보할 수 없음.
+- 이전 `server/recommendation.mjs`: 외부 `/api/v2/cocktails/recommendation`의 한 건 응답을 전달. URL 미설정 시 사진이 없는 모히토 데모. 전체 후보의 수치 속성은 이 응답으로 확보할 수 없음.
 - 그래서 첨부 CSV를 명시적 데이터 소스로 사용하는 **새 `/api/recommendations`**를 추가했습니다. 기존 단수 API, 설정 API, 질문 모듈과 테스트는 이전 호출자 호환을 위해 유지합니다. 새 UI는 데모나 기존 백엔드 응답으로 자동 대체하지 않습니다.
 - 디자인 기준: `src/styles/tokens.css`의 Pretendard, 웜크림, 플럼. 기존 추천 화면 CSS와 선택/다음/뒤로가기 구조를 재사용합니다.
 
@@ -15,9 +15,9 @@
 
 | 파일 | 역할 |
 |---|---|
-| `onz_cocktails_530.csv` | 사용자가 제공한 원본. 수정하지 않음 |
+| `onz_cocktails_105.csv` | 추천 데이터 원본. 서비스 컬럼 26개 + 추천 속성 36개(맛·향·상황·초보자 적합도·베이스·서빙·알레르기) |
 | `scripts/prepare_recommendations.py` | Python 표준 CSV 파서로 BOM·따옴표·여러 줄 처리, 필수 값/범위/ID/사진 URL 검증, JSON·분포 보고서 생성 |
-| `recommendation/data/cocktails.json`, `data.ts` | 실제 CSV 530개, 32개 수치 속성 및 표시/다양성 속성. 브라우저에 전체 데이터를 전송하지 않음 |
+| `recommendation/data/cocktails.json`, `data.ts` | 실제 CSV 105개, 32개 수치 속성 및 표시/다양성 속성. 브라우저에 전체 데이터를 전송하지 않음 |
 | `recommendation/types.ts` | Cocktail, LIKE/UNKNOWN/DISLIKE, 결과/근거 타입 |
 | `recommendation/questions.ts` | 초보자 6문항과 서버/클라이언트 공용 답변 검증 |
 | `recommendation/config.ts` | 질문 목표값, 그룹 매핑, 점수·MMR 가중치와 임계값 |
@@ -32,7 +32,7 @@
 | `vite.config.ts` | 개발·preview 서버에서 신규 API 연결 |
 | `tsconfig.node.json` | 엔진·API·평가 스크립트 strict TypeScript 검사 |
 | `recommend/app.js`, `index.html`, `style.css` | 6문항, 사진이 있는 Top 5, 실제 근거·재료·유래, 이전/수정/재시도 |
-| `server/recommendations.test.mjs` | 실제 530개 데이터 기반 회귀·계약 테스트 |
+| `server/recommendations.test.mjs` | 실제 105개 데이터 기반 회귀·계약 테스트 |
 | `scripts/evaluate_recommendations.ts` | A–D Top 10과 점수·속성·근거 보고서 생성 |
 | `reports/recommendation-data.md` | 전체 컬럼 분포와 데이터 품질 |
 | `reports/recommendation-cases.md` | 최종 A–D Top 10, 점수 breakdown, 속성, 가족, 근거 |
@@ -91,9 +91,9 @@ Case D는 맛·향이 UNKNOWN이므로 alcohol .4444 / texture .2222 / occasion 
 
 `GET /api/recommendations?taste=SWEET&aroma=FRUIT&alcohol=MILD&texture=FIZZY&occasion=PARTY&adventure=1`
 
-`{ mode: 'csv', datasetCount: 530, data: CocktailRecommendation[5] }`
+`{ mode: 'csv', datasetCount: 105, data: CocktailRecommendation[5] }`
 
-모든 결과에 실제 CSV 사진, 한글·영문 이름, numeric v2 ABV, 베이스, 계산 근거, 재료·유래를 표시합니다. 사진이 실패하면 다른 칵테일 사진으로 대체하지 않고 실패 상태를 표시합니다. 105개 ONZ HTTP 이미지 주소는 검증한 HTTPS로 변환하고 425개 GitHub HTTPS 주소는 유지합니다. 추천 UI에서 외부 백엔드 API 키는 필요하지 않습니다.
+모든 결과에 실제 CSV 사진, 한글·영문 이름, numeric v2 ABV, 베이스, 계산 근거, 재료·유래를 표시합니다. 사진이 실패하면 다른 칵테일 사진으로 대체하지 않고 실패 상태를 표시합니다. 105개 ONZ HTTP 이미지 주소는 검증한 HTTPS로 변환합니다. 추천 UI에서 외부 백엔드 API 키는 필요하지 않습니다.
 
 ## 재현과 검증
 
