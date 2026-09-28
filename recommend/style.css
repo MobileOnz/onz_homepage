@@ -100,11 +100,20 @@ summary { cursor: pointer; padding: 14px 0; color: var(--accent); font-size: 14p
 summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 summary:hover { text-decoration: underline; }
 h3 { font-size: 14px; margin: 20px 0 8px; }
-.message { flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px; text-align: center; }
-.message h1 { font-size: 30px; }
-.message p { color: var(--muted); font-size: 14px; }
-.spinner { width: 36px; height: 36px; flex-shrink: 0; margin: 0 auto 28px; border: 3px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin 1.2s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
+.loading { flex: 1; min-height: 0; overflow: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px 24px calc(64px + var(--safe-bottom)); text-align: center; animation: option-reveal 620ms cubic-bezier(.32,.72,0,1) both; }
+.loading .glass-mark { width: 72px; height: 84px; margin: 0 0 36px; animation-iteration-count: infinite; }
+.loading .glass-mark svg { width: 54px; height: 72px; stroke-width: .9; }
+.loading .glass-mark i { top: 5px; right: 8px; animation-iteration-count: infinite; }
+.loading .glass-glint { animation-iteration-count: infinite; }
+.glass-fill { fill: var(--accent); stroke: none; opacity: .28; transform-box: fill-box; transform-origin: 50% 100%; animation: glass-fill 2.8s cubic-bezier(.32,.72,0,1) infinite; }
+.loading .eyebrow { margin-bottom: 20px; }
+.loading .eyebrow::before { content: ''; width: 34px; height: 1px; background: color-mix(in srgb, var(--accent) 56%, transparent); }
+.loading h1 { font-size: clamp(28px, 3.4vw, 44px); max-width: 14em; }
+.loading .hint { max-width: 32ch; text-wrap: balance; }
+.loading-line { position: relative; width: 120px; height: 2px; margin-top: 40px; overflow: hidden; border-radius: 2px; background: var(--line); }
+.loading-line::after { content: ''; position: absolute; inset: 0; width: 40%; border-radius: inherit; background: var(--accent); animation: loading-line 1.6s cubic-bezier(.65,0,.35,1) infinite; }
+@keyframes glass-fill { 0% { transform: scaleY(0); opacity: 0; } 15% { opacity: .28; } 65%, 85% { transform: scaleY(1); opacity: .28; } 100% { transform: scaleY(1); opacity: 0; } }
+@keyframes loading-line { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
 @keyframes glass-rock { 0%, 100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
 @keyframes glass-glint { 0%, 100% { opacity: .25; } 50% { opacity: .75; } }
 @keyframes garnish { 0%, 100% { transform: translateY(1px); opacity: .45; } 50% { transform: translateY(-2px); opacity: 1; } }

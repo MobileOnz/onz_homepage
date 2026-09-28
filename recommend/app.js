@@ -115,8 +115,7 @@ async function submit() {
   busy = true;
   updateNavigation();
   document.querySelector('#progress-region').hidden = true;
-  app.innerHTML = '<div class="message" role="status" aria-live="polite"><div class="spinner" aria-hidden="true"></div>' +
-    '<h1 tabindex="-1">취향에 맞는 한 잔을 찾고 있어요…</h1><p>선택한 취향을 칵테일에 담고 있어요.</p></div>';
+  app.innerHTML = `<div class="loading" role="status" aria-live="polite"><div class="glass-mark" aria-hidden="true"><svg viewBox="0 0 36 48"><clipPath id="bowl-clip"><path d="M5 7h26L18 23 5 7Z"/></clipPath><rect class="glass-fill" clip-path="url(#bowl-clip)" x="0" y="7" width="36" height="16"/><path class="glass-bowl" d="M5 7h26L18 23 5 7Z"/><path class="glass-stem" d="M18 23v16m-8 0h16"/><path class="glass-glint" d="m11 10 5 6"/></svg><i></i></div><p class="eyebrow">취향을 담는 중</p><h1 tabindex="-1">취향에 맞는 한 잔을 찾고 있어요</h1><p class="hint">고른 여섯 가지 취향으로 어울리는 칵테일을 고르고 있어요.</p><span class="loading-line" aria-hidden="true"></span></div>`;
   focusTitle();
   try {
     const response = await fetch(`/api/recommendations?${toRequest(answers)}`, { signal: AbortSignal.timeout(15000) });
