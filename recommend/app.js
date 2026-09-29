@@ -18,6 +18,23 @@ let transitioning = false;
 let selectedAt = 0;
 const navBack = document.querySelector('#nav-back');
 const embedded = !!window.ReactNativeWebView;
+const flowVersion = 'web_v1_six_questions';
+let recommendationSessionId;
+function emitRecommendation(event, properties = {}) {
+  if (!embedded) return;
+  try {
+    window.ReactNativeWebView.postMessage(JSON.stringify({
+      type: 'onz:analytics', event,
+      properties: { ...properties, flow_version: flowVersion,
+        recommendation_session_id: recommendationSessionId, event_id: crypto.randomUUID() },
+    }));
+  } catch { /* Analytics must never interrupt recommendations. */ }
+}
+function startRecommendation() {
+  if (!embedded) return;
+  try { recommendationSessionId = crypto.randomUUID(); } catch { return; }
+  emitRecommendation('recommendation_started');
+}
 document.documentElement.classList.toggle('embedded', embedded);
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 function updateNavigation() {
@@ -59,6 +76,7 @@ async function changeStep(nextStep, reset = false, send = false) {
     if (reset) answers = {};
     step = nextStep;
     render();
+    if (reset) startRecommendation();
     await animateBody(app.querySelector('.question-body'), true, direction);
   } finally {
     app.inert = false;
@@ -82,6 +100,9 @@ function render(moveFocus = false) {
   app.querySelector('form').onsubmit = event => {
     event.preventDefault();
     if (!answers[q.key] || transitioning || busy) return;
+    emitRecommendation('submit_answer_recommend', {
+      question_step: step + 1, question_key: q.key, answer_code: answers[q.key],
+    });
     if (step < questions.length - 1) changeStep(step + 1);
     else changeStep(step, false, true);
   };
@@ -117,10 +138,23 @@ async function submit() {
   document.querySelector('#progress-region').hidden = true;
   app.innerHTML = `<div class="loading" role="status" aria-live="polite"><div class="glass-mark" aria-hidden="true"><svg viewBox="0 0 36 48"><clipPath id="bowl-clip"><path d="M5 7h26L18 23 5 7Z"/></clipPath><rect class="glass-fill" clip-path="url(#bowl-clip)" x="0" y="7" width="36" height="16"/><path class="glass-bowl" d="M5 7h26L18 23 5 7Z"/><path class="glass-stem" d="M18 23v16m-8 0h16"/><path class="glass-glint" d="m11 10 5 6"/></svg><i></i></div><p class="eyebrow">취향을 담는 중</p><h1 tabindex="-1">취향에 맞는 한 잔을 찾고 있어요</h1><p class="hint">고른 여섯 가지 취향으로 어울리는 칵테일을 고르고 있어요.</p><span class="loading-line" aria-hidden="true"></span></div>`;
   focusTitle();
+  let requestId;
+  let failureStage = 'validation';
+  let errorCode = 'invalid_answers';
   try {
-    const response = await fetch(`/api/recommendations?${toRequest(answers)}`, { signal: AbortSignal.timeout(15000) });
+    const query = toRequest(answers);
+    try { if (embedded) requestId = crypto.randomUUID(); } catch { /* Keep API usable. */ }
+    failureStage = 'request';
+    errorCode = 'network_error';
+    emitRecommendation('recommendation_requested', { request_id: requestId });
+    const response = await fetch(`/api/recommendations?${query}`, { signal: AbortSignal.timeout(15000) });
+    failureStage = 'response';
+    errorCode = response.ok ? 'invalid_response' : 'http_error';
     const body = await readRecommendationResponse(response);
+    errorCode = Array.isArray(body?.data) ? 'empty_results' : 'invalid_response';
     if (!Array.isArray(body.data) || !body.data.length) throw new Error('추천 결과가 없습니다. 답변을 바꿔 다시 시도해주세요.');
+    failureStage = 'render';
+    errorCode = 'render_error';
     const chips = questions.map(q => `<span>${escape(q.options.find(([code]) => code === answers[q.key])[1])}</span>`).join('');
     app.innerHTML = `<p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">취향에 가까운 칵테일 ${body.data.length}잔</h1><p class="hint">답변을 바탕으로, 서로 다른 매력의 칵테일을 골랐어요.</p><div class="recommendation-list">${body.data.map(resultCard).join('')}</div><h2>내가 고른 취향</h2><div class="chips">${chips}</div><div class="actions"><button id="edit" class="back">취향 수정</button><button id="restart" class="primary">처음부터 다시</button></div>`;
     app.querySelectorAll('.result-image').forEach(img => {
@@ -131,7 +165,25 @@ async function submit() {
       });
     });
     layoutResult(); resultActions(); focusTitle();
+    emitRecommendation('recommendation_result_viewed', {
+      request_id: requestId, result_count: body.data.length,
+    });
+    const expanded = new Set();
+    app.querySelectorAll('details').forEach((details, index) => {
+      details.addEventListener('toggle', () => {
+        const cocktailId = String(body.data[index].cocktail.id);
+        if (!details.open || expanded.has(cocktailId)) return;
+        expanded.add(cocktailId);
+        emitRecommendation('recommendation_detail_expanded', {
+          request_id: requestId, cocktail_id: cocktailId, position: index + 1,
+        });
+      });
+    });
   } catch (error) {
+    emitRecommendation('recommendation_failed', {
+      ...(requestId ? { request_id: requestId } : {}), failure_stage: failureStage,
+      error_code: failureStage === 'request' && error.name === 'TimeoutError' ? 'timeout' : errorCode,
+    });
     app.innerHTML = `<div role="alert"><p class="eyebrow">잠시만요</p><h1 tabindex="-1">추천을 가져오지 못했어요</h1><p class="description">${escape(error.name === 'TimeoutError' ? '응답 시간이 초과됐어요. 다시 시도해주세요.' : error.message)}</p><div class="actions"><button class="back">답변 수정</button><button class="primary">다시 시도</button></div></div>`;
     layoutResult();
     app.querySelector('.back').onclick = () => changeStep(step);
@@ -140,6 +192,7 @@ async function submit() {
   } finally { busy = false; updateNavigation(); }
 }
 render();
+startRecommendation();
 function goBack() {
   if (transitioning || busy) return;
   if (embedded) window.ReactNativeWebView.postMessage('onz:close');
