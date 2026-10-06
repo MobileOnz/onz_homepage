@@ -28,6 +28,8 @@ export interface Article extends ArticleSummary {
   slug: string
   dek: string
   author: string
+  datePublished?: string
+  dateModified?: string
   heroCaption: string
   content: ContentBlock[]
 }
