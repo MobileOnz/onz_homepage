@@ -127,9 +127,9 @@ function resultCard(result) {
   let photo = '';
   try {
     const url = new URL(d.imageUrl);
-    if (url.protocol === 'https:') photo = `<img class="result-image" width="800" height="600" src="${escape(url.href)}" alt="${escape(d.korName)} 칵테일" ${result.rank === 1 ? 'fetchpriority="high"' : 'loading="lazy"'} referrerpolicy="no-referrer">`;
+    if (url.protocol === 'https:') photo = `<img class="result-image" width="800" height="600" src="${escape(url.href)}" data-fallback="${escape(d.imageFallbackUrl ?? '')}" alt="${escape(d.korName)} 칵테일" ${result.rank === 1 ? 'fetchpriority="high"' : 'loading="lazy"'} referrerpolicy="no-referrer">`;
   } catch { /* An unavailable image gets an honest text state below. */ }
-  return `<article class="recommendation-card"><div class="result-photo">${photo}<p class="image-unavailable" ${photo ? 'hidden' : ''}>${escape(d.korName)} 사진을 불러올 수 없어요.</p></div><div class="recommendation-info"><p class="eyebrow">${result.rank === 1 ? '가장 가까운 취향' : '함께 살펴볼 한 잔'} · ${result.rank}</p><h2>${escape(d.korName)}</h2><p class="english">${escape(d.engName)}</p><p class="detail">${escape(d.base)} · 도수 ${escape(d.features.v2_abv)}%</p><ul class="reasons">${result.reasons.map(reason => `<li>${escape(reason)}</li>`).join('')}</ul><details><summary>재료와 이야기</summary><h3>재료</h3><p class="description">${escape(d.ingredients)}</p><h3>이야기</h3><p class="description">${escape(d.originText)}</p></details></div></article>`;
+  return `<article class="recommendation-card"><div class="result-photo">${photo}<p class="image-unavailable" ${photo ? 'hidden' : ''}>${escape(d.korName)} 사진을 불러올 수 없어요.</p></div><div class="recommendation-info"><p class="eyebrow">${result.rank === 1 ? '가장 가까운 취향' : '함께 살펴볼 한 잔'} · ${result.rank}</p><h2>${escape(d.korName)}</h2><p class="english">${escape(d.engName)}</p><p class="detail">${escape(d.base)} · 도수 ${escape(d.abvLabel ?? d.features?.v2_abv ?? '정보 없음')}%</p><ul class="reasons">${result.reasons.map(reason => `<li>${escape(reason)}</li>`).join('')}</ul><details><summary>재료와 이야기</summary><h3>재료</h3><p class="description">${escape(d.ingredients)}</p><h3>이야기</h3><p class="description">${escape(d.originText)}</p></details></div></article>`;
 }
 async function submit() {
   if (busy) return;
@@ -156,10 +156,15 @@ async function submit() {
     failureStage = 'render';
     errorCode = 'render_error';
     const chips = questions.map(q => `<span>${escape(q.options.find(([code]) => code === answers[q.key])[1])}</span>`).join('');
-    app.innerHTML = `<p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">취향에 가까운 칵테일 ${body.data.length}잔</h1><p class="hint">답변을 바탕으로, 서로 다른 매력의 칵테일을 골랐어요.</p><div class="recommendation-list">${body.data.map(resultCard).join('')}</div><h2>내가 고른 취향</h2><div class="chips">${chips}</div><div class="actions"><button id="edit" class="back">취향 수정</button><button id="restart" class="primary">처음부터 다시</button></div>`;
+    app.innerHTML = `<p class="eyebrow">나를 위한 한 잔</p><h1 tabindex="-1">취향에 가까운 칵테일 ${body.data.length}잔</h1><p class="hint">${escape(body.notice ?? '답변을 바탕으로, 서로 다른 매력의 칵테일을 골랐어요.')}</p><div class="recommendation-list">${body.data.map(resultCard).join('')}</div><h2>내가 고른 취향</h2><div class="chips">${chips}</div><div class="actions"><button id="edit" class="back">취향 수정</button><button id="restart" class="primary">처음부터 다시</button></div>`;
     app.querySelectorAll('.result-image').forEach(img => {
       img.addEventListener('error', () => {
-        // Never replace a missing cocktail photo with a different cocktail.
+        // Fallback keeps the same cocktail filename; a second failure shows the honest empty state.
+        if (img.dataset.fallback) {
+          img.src = img.dataset.fallback;
+          img.dataset.fallback = '';
+          return;
+        }
         img.hidden = true;
         img.nextElementSibling.hidden = false;
       });

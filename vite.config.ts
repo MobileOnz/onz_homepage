@@ -13,14 +13,14 @@ export default defineConfig(({ mode }) => {
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
           if (!req.url?.startsWith('/api/')) return next()
-          if (new URL(req.url, 'http://localhost').pathname === '/api/recommendations') recommendations(req, res)
+          if (new URL(req.url, 'http://localhost').pathname === '/api/recommendations') void recommendations(req, res, env)
           else void handler(req, res, env)
         })
       },
       configurePreviewServer(server) {
         server.middlewares.use((req, res, next) => {
           if (!req.url?.startsWith('/api/')) return next()
-          if (new URL(req.url, 'http://localhost').pathname === '/api/recommendations') recommendations(req, res)
+          if (new URL(req.url, 'http://localhost').pathname === '/api/recommendations') void recommendations(req, res, env)
           else void handler(req, res, env)
         })
       },
